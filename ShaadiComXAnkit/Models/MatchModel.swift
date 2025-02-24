@@ -30,7 +30,8 @@ struct Login: Codable {
     let uuid: String
 }
 
-struct MatchModel: Identifiable {
+struct MatchModel: Identifiable, Codable {
+    
     let id: String
     let name: String
     let imageUrl: String
@@ -42,14 +43,18 @@ struct MatchModel: Identifiable {
         self.imageUrl = user.picture.large
     }
     
-    init(from entity: MatchEntity) {
-        self.id = entity.id ?? ""
-        self.name = entity.name ?? "Unknown"
-        self.imageUrl = entity.imageUrl ?? ""
-        self.status = MatchStatus(rawValue: entity.status ?? "pending") ?? .pending
+    enum CodingKeys: String, CodingKey {
+        case id, name, imageUrl, status
     }
+    
+//    init(from entity: MatchEntity) {
+//        self.id = entity.id ?? ""
+//        self.name = entity.name ?? "Unknown"
+//        self.imageUrl = entity.imageUrl ?? ""
+//        self.status = MatchStatus(rawValue: entity.status ?? "pending") ?? .pending
+//    }
 }
 
-enum MatchStatus: String {
+enum MatchStatus: String, Codable {
     case pending, accepted, declined
 }

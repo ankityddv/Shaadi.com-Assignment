@@ -11,27 +11,31 @@ class HomeViewModel: ObservableObject {
     
     @Published var matches: [MatchModel] = []
     
-    private let networkManager = NetworkManager()
-    private let coreDataManager = CoreDataManager()
+    private let homeDataRepository: HomeDataRepository = HomeDataRepository(storage: UserDefaultsManager(), networkManager: HomeRequestManager())
+    
     
     func fetchMatches() {
         
-        networkManager.fetchMatches { result in
+        homeDataRepository.fetchMatches { [weak self] result in
+            
             DispatchQueue.main.async {
                 switch result {
                 case .success(let fetchedMatches):
-                    self.matches = fetchedMatches
-                    self.coreDataManager.saveMatches(fetchedMatches)
+                    self?.matches = fetchedMatches
                 case .failure(let error):
-                    print("Error fetching matches: \(error)")
-                    self.matches = self.coreDataManager.fetchStoredMatches()
+                    print("Can't fetch matches: \(error)")
                 }
             }
         }
     }
     
     func updateMatchStatus(_ match: MatchModel, status: MatchStatus) {
-        coreDataManager.updateMatch(match, status: status)
-        matches = coreDataManager.fetchStoredMatches()
+      
+        homeDataRepository.updateMatch(match, status: status) { [weak self] matches in
+            
+            DispatchQueue.main.async {
+                self?.matches = matches
+            }
+        }
     }
 }

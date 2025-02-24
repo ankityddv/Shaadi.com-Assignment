@@ -8,12 +8,12 @@
 import Foundation
 
 protocol NetworkRequestProtocol {
-    func getData<T>(url: String, completion: @escaping (Result<[T], any Error>) -> Void)
+    func getData<T: Codable>(url: String, completion: @escaping (Result<[T], any Error>) -> Void)
 }
 
 class NetworkManager: NetworkRequestProtocol {
     
-    func getData<T>(url: String, completion: @escaping (Result<[T], any Error>) -> Void) {
+    func getData<T: Codable>(url: String, completion: @escaping (Result<T, any Error>) -> Void) {
        
         guard let url = URL(string: url) else { return }
         
@@ -29,21 +29,11 @@ class NetworkManager: NetworkRequestProtocol {
             }
             
             do {
-                let response = try JSONDecoder().decode(APIResponse.self, from: data)
-                let matches = response.results.map { MatchModel(from: $0) }
-                completion(.success(matches))
+                let response = try JSONDecoder().decode(T.self, from: data)
+                completion(.success(response))
             } catch {
                 completion(.failure(error))
             }
         }.resume()
     }
-}
-
-class HomeRequestManager {
-    
-    func fetchUsers() -> [MatchModel] {
-        
-        NetworkManager().getData(url: "https://randomuser.me/api/?results=10", completion: <#T##(Result<[T], any Error>) -> Void#>)
-    }
-        
 }
