@@ -18,6 +18,7 @@ class UserDefaultsManager: StorageProtocol {
     private let key = "storedMatches"
     
     func saveMatches(_ matches: [MatchModel]) {
+        
         do {
             let encodedData = try JSONEncoder().encode(matches)
             UserDefaults.standard.set(encodedData, forKey: key)
@@ -27,7 +28,9 @@ class UserDefaultsManager: StorageProtocol {
     }
     
     func fetchStoredMatches() -> [MatchModel] {
+        
         guard let data = UserDefaults.standard.data(forKey: key) else { return [] }
+        
         do {
             return try JSONDecoder().decode([MatchModel].self, from: data)
         } catch {
@@ -37,11 +40,19 @@ class UserDefaultsManager: StorageProtocol {
     }
     
     func updateMatch(_ match: MatchModel, status: MatchStatus) {
+        
         var matches = fetchStoredMatches()
         
         if let index = matches.firstIndex(where: { $0.id == match.id }) {
-            matches[index].status = status
+            matches[index].statusInt = status.rawValue
             saveMatches(matches)
+        } else {
+            var newMatch = match
+            newMatch.statusInt = status.rawValue
+            
+            var existingMatches = self.fetchStoredMatches()
+            existingMatches.append(newMatch)
+            saveMatches(existingMatches)
         }
     }
 }

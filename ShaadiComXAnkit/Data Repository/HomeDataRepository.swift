@@ -22,12 +22,12 @@ class HomeDataRepository {
         self.networkManager.fetchUsers { [weak self] result in
             switch result {
             case .success(let success):
-                self?.storageManager.saveMatches(success)
+                completion(.success(success))
             case .failure(let failure):
-                print("failed to fetch data")
+                print("failed to fetch data: \(failure)")
+                // send matches from the cache
+                completion(.success(self?.storageManager.fetchStoredMatches() ?? []))
             }
-            
-            completion(result)
         }
     }
     

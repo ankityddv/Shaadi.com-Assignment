@@ -35,16 +35,17 @@ struct MatchModel: Identifiable, Codable {
     let id: String
     let name: String
     let imageUrl: String
-    var status: MatchStatus = .pending
+    var statusInt: Int
     
     init(from user: UserResponse) {
         self.id = user.login.uuid
         self.name = "\(user.name.first) \(user.name.last)"
         self.imageUrl = user.picture.large
+        self.statusInt = 2
     }
     
     enum CodingKeys: String, CodingKey {
-        case id, name, imageUrl, status
+        case id, name, imageUrl, statusInt
     }
     
 //    init(from entity: MatchEntity) {
@@ -54,7 +55,21 @@ struct MatchModel: Identifiable, Codable {
 //        self.status = MatchStatus(rawValue: entity.status ?? "pending") ?? .pending
 //    }
 }
+extension MatchModel {
+   
+    var status: MatchStatus {
+        get {
+            return MatchStatus(rawValue: statusInt)!
+        }
+        set {
+            statusInt = newValue.rawValue
+        }
+    }
+}
 
-enum MatchStatus: String, Codable {
-    case pending, accepted, declined
+enum MatchStatus: Int, Codable {
+    
+    case pending = 2
+    case accepted = 1
+    case declined = 0
 }

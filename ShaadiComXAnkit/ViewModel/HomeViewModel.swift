@@ -13,7 +13,6 @@ class HomeViewModel: ObservableObject {
     
     private let homeDataRepository: HomeDataRepository = HomeDataRepository(storage: UserDefaultsManager(), networkManager: HomeRequestManager())
     
-    
     func fetchMatches() {
         
         homeDataRepository.fetchMatches { [weak self] result in
@@ -33,8 +32,8 @@ class HomeViewModel: ObservableObject {
       
         homeDataRepository.updateMatch(match, status: status) { [weak self] matches in
             
+            print("Saved matches: \(matches)")
             DispatchQueue.main.async {
-                self?.matches = matches
             }
         }
     }
