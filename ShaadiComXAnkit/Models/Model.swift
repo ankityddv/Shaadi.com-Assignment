@@ -1,5 +1,5 @@
 //
-//  MatchModel.swift
+//  Model.swift
 //  ShaadiComXAnkit
 //
 //  Created by Ankit Yadav on 22/02/25.
@@ -48,12 +48,12 @@ struct MatchModel: Identifiable, Codable {
         case id, name, imageUrl, statusInt
     }
     
-//    init(from entity: MatchEntity) {
-//        self.id = entity.id ?? ""
-//        self.name = entity.name ?? "Unknown"
-//        self.imageUrl = entity.imageUrl ?? ""
-//        self.status = MatchStatus(rawValue: entity.status ?? "pending") ?? .pending
-//    }
+    init(from entity: MatchEntity) {
+        self.id = entity.id ?? ""
+        self.name = entity.name ?? "Unknown"
+        self.imageUrl = entity.imageUrl ?? ""
+        self.statusInt = entity.statusInt
+    }
 }
 extension MatchModel {
    

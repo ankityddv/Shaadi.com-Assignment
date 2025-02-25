@@ -31,8 +31,7 @@ class HomeDataRepository {
         }
     }
     
-    func updateMatch(_ match: MatchModel, status: MatchStatus, completion: @escaping ([MatchModel]) -> Void) {
+    func updateMatch(_ match: MatchModel, status: MatchStatus) {
         storageManager.updateMatch(match, status: status)
-        completion(storageManager.fetchStoredMatches())
     }
 }

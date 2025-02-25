@@ -11,11 +11,10 @@ class HomeRequestManager {
     
     func fetchUsers(completion: @escaping(Result<[MatchModel], Error>) -> Void) {
         
-        let urlString = "https://randomuser.me/api/?results=10"
-        
-        NetworkManager().getData(url: urlString) { (result: Result<APIResponse, Error>) in
+        NetworkManager().getData(url: RANDOM_USER_API_URL) { (result: Result<APIResponse, Error>) in
             
             switch result {
+                
             case .success(let response):
                 let matches = response.results.map { MatchModel(from: $0) }
                 completion(.success(matches))

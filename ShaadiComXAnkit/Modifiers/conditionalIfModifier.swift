@@ -8,6 +8,7 @@
 import SwiftUI
 
 extension View {
+   
     @ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
         if condition {
             transform(self)
@@ -22,6 +23,7 @@ extension View {
 }
 
 fileprivate struct HostingWindowFinder: UIViewRepresentable {
+   
     var callback: (UIWindow?) -> ()
 
     func makeUIView(context: Context) -> UIView {

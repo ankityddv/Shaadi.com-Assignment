@@ -11,7 +11,7 @@ class HomeViewModel: ObservableObject {
     
     @Published var matches: [MatchModel] = []
     
-    private let homeDataRepository: HomeDataRepository = HomeDataRepository(storage: UserDefaultsManager(), networkManager: HomeRequestManager())
+    private let homeDataRepository: HomeDataRepository = HomeDataRepository(storage: CoreDataManager(), networkManager: HomeRequestManager())
     
     func fetchMatches() {
         
@@ -30,11 +30,6 @@ class HomeViewModel: ObservableObject {
     
     func updateMatchStatus(_ match: MatchModel, status: MatchStatus) {
       
-        homeDataRepository.updateMatch(match, status: status) { [weak self] matches in
-            
-            print("Saved matches: \(matches)")
-            DispatchQueue.main.async {
-            }
-        }
+        homeDataRepository.updateMatch(match, status: status)
     }
 }

@@ -14,7 +14,8 @@ class PersistenceController {
     let container: NSPersistentContainer
     
     init() {
-        container = NSPersistentContainer(name: "MatchMate")
+       
+        container = NSPersistentContainer(name: "MatchModel")
         container.loadPersistentStores { _, error in
             if let error = error {
                 fatalError("Unresolved error \(error)")

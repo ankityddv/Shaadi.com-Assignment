@@ -18,6 +18,7 @@ class NetworkManager: NetworkRequestProtocol {
         guard let url = URL(string: url) else { return }
         
         URLSession.shared.dataTask(with: url) { data, _, error in
+           
             if let error = error {
                 completion(.failure(error))
                 return

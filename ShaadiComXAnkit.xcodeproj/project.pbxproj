@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4103A66C2D6DE3020021701A /* MatchEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4103A66A2D6DE3020021701A /* MatchEntity+CoreDataClass.swift */; };
+		4103A66D2D6DE3020021701A /* MatchEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4103A66B2D6DE3020021701A /* MatchEntity+CoreDataProperties.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		4130F50E2D6A0A79009A4042 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4103A66A2D6DE3020021701A /* MatchEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MatchEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4103A66B2D6DE3020021701A /* MatchEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MatchEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4130F4FD2D6A0A77009A4042 /* ShaadiComXAnkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShaadiComXAnkit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4130F50D2D6A0A79009A4042 /* ShaadiComXAnkitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShaadiComXAnkitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4130F5172D6A0A79009A4042 /* ShaadiComXAnkitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShaadiComXAnkitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +82,8 @@
 		4130F4F42D6A0A77009A4042 = {
 			isa = PBXGroup;
 			children = (
+				4103A66A2D6DE3020021701A /* MatchEntity+CoreDataClass.swift */,
+				4103A66B2D6DE3020021701A /* MatchEntity+CoreDataProperties.swift */,
 				4130F4FF2D6A0A77009A4042 /* ShaadiComXAnkit */,
 				4130F5102D6A0A79009A4042 /* ShaadiComXAnkitTests */,
 				4130F51A2D6A0A79009A4042 /* ShaadiComXAnkitUITests */,
@@ -239,6 +248,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4103A66C2D6DE3020021701A /* MatchEntity+CoreDataClass.swift in Sources */,
+				4103A66D2D6DE3020021701A /* MatchEntity+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
